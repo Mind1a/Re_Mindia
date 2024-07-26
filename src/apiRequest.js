@@ -1,0 +1,27 @@
+// const apiRequest = async (url = '', optionsObj = null, errMsg = null) => {
+//   try {
+//     const response = await fetch(url, optionsObj);
+//     if (!response.ok) throw Error('Please reload the app');
+//     return await response.json();
+//   } catch (err) {
+//     errMsg = err.message;
+//   } finally {
+//     return errMsg;
+//   }
+// };
+
+// export default apiRequest;
+
+const apiRequest = async (url = '', optionsObj = null) => {
+  let errMsg = null;
+  try {
+    const response = await fetch(url, optionsObj);
+    if (!response.ok) throw new Error('Please reload the app');
+    return await response.json();
+  } catch (err) {
+    errMsg = err.message;
+    return { error: errMsg }; // Return an object with the error message
+  }
+};
+
+export default apiRequest;
